@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { getTestAIStream, tests } from "@/test-stream-responses";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -16,6 +17,13 @@ const messages =
 
 export async function GET() {
   const encoder = new TextEncoder();
+  const reader = getTestAIStream(tests.simplePage).getReader()
+
+
+
+
+
+
   const customReadable = new ReadableStream({
     async start(controller) {
       controller.enqueue(encoder.encode("Welcome"));
